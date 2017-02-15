@@ -14,14 +14,10 @@ module.exports = {
   ],
 
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, 'build'),
     filename: 'bundle.js',
     publicPath: '/static/'
   },
-
-  plugins : [
-    new webpack.HotModuleReplacementPlugin()
-  ],
 
   module: {
     preLoaders: [{
@@ -30,12 +26,21 @@ module.exports = {
       include: /src/,
       loader: 'standard'
     }],
+
     loaders : [{
-      test: /\.js$/,
+      test: /\.jsx?$/,
       exclude: /node_modules/,
       include: /src/,
       loader: 'babel'
+    },
+    {
+      test: /\.scss$/,
+      loaders: ['style-loader', 'css-loader', 'sass-loader']
     }]
-  }
+  },
+
+  plugins : [
+    new webpack.HotModuleReplacementPlugin()
+  ]
 
 };

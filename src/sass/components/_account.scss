@@ -1,0 +1,52 @@
+.account {
+  padding: 24px;
+
+  &:not(:last-of-type) {
+    border-bottom: 1px solid $DIVIDER_COLOR;
+  }
+
+  .account__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+
+    .account__header__title {
+      font-size: 12px;
+      text-transform: uppercase;
+      color: $SECONDARY_TEXT_COLOR;
+    }
+
+    .account__header__options {
+
+    }
+  }
+
+  .account__body {
+
+    .account__body__display {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .account__body__display__label {
+      margin-top: 16px;
+      margin-bottom: 4px;
+      color: $SECONDARY_TEXT_COLOR;
+      font-size: 11px;
+    }
+
+    .account__body__display__number {
+      font-size: 22px;
+
+      &.is-smaller {
+        font-size: 14px;
+      }
+    }
+
+    .account__body__actions {
+      padding: 24px 0;
+    }
+  }
+
+}
