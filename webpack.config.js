@@ -22,20 +22,24 @@ module.exports = {
   module: {
     preLoaders: [{
       test: /\.js$/,
-      exclude: /node_modules/,
+      exclude: [/node_modules/, /vendors/],
       include: /src/,
       loader: 'standard'
     }],
 
     loaders : [{
       test: /\.jsx?$/,
-      exclude: /node_modules/,
+      exclude: [/node_modules/, /vendors/],
       include: /src/,
       loader: 'babel'
     },
     {
       test: /\.scss$/,
       loaders: ['style-loader', 'css-loader', 'sass-loader']
+    },
+    {
+      test: /\.css$/,
+      loaders: ['style-loader', 'css-loader']
     }]
   },
 

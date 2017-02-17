@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "toolbox": "react-toolbox-themr"
   },
   "devDependencies": {
     "babel-core": "^6.21.0",
@@ -12,6 +13,8 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "node-sass": "^4.5.0",
     "react-hot-loader": "^3.0.0-beta.2",
+    "react-toolbox": "^2.0.0-beta.6",
+    "react-toolbox-themr": "^1.0.2",
     "sass-loader": "^6.0.0",
     "standard": "^8.6.0",
     "standard-loader": "^5.0.0",
@@ -22,5 +25,15 @@
   "dependencies": {
     "react": "^15.4.1",
     "react-dom": "^15.4.1"
+  },
+  "reactToolbox": {
+    "customProperties": {
+      "animation-duration": "0.3s",
+      "color-accent": "var(--palette-pink-a200)",
+      "color-accent-dark": "var(--palette-pink-700)",
+      "color-primary-contrast": "var(--color-dark-contrast)",
+      "color-accent-contrast": "var(--color-dark-contrast)"
+    },
+    "output": "src/vendors/react-toolbox"
   }
 }
