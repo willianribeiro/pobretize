@@ -3,6 +3,13 @@ body {
   color: $PRIMARY_TEXT_COLOR;
 }
 
+body,
+html,
+.app-root,
+.app-wrapper {
+  height: 100%;
+}
+
 .app-wrapper {
   .app-header {
     display: flex;
