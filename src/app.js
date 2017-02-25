@@ -1,7 +1,7 @@
 'use strict'
 
 import React from 'react'
-import Home from './containers/Home.jsx'
+import Home from './modules/home/containers/Home.jsx'
 
 class App extends React.Component {
 
