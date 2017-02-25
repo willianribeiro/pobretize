@@ -19,6 +19,10 @@ module.exports = {
     publicPath: '/static/'
   },
 
+  resolve: {
+    extentions: ['.js', '.jsx', '.css', '.scss', '']
+  },
+
   module: {
     preLoaders: [{
       test: /\.js$/,

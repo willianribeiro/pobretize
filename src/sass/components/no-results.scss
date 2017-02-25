@@ -1,0 +1,22 @@
+.no-results {
+  padding: 24px;
+  
+  .no-results__message,
+  .no-results__tip,
+  .no-results__action {
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  .no-results__message {
+    font-size: 24px;
+  }
+
+  .no-results__tip {
+    font-size: 18px;
+  }
+
+  .no-results__action {
+    padding: 24px 0;
+  }
+}

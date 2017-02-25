@@ -2,45 +2,50 @@
 
 import React from 'react'
 import Account from './components/Account.jsx'
+import NoResults from './components/NoResults.jsx'
+
+const accounts = [
+  // {
+  //   name: 'Caixa',
+  //   percent: 0,
+  //   total: 8000,
+  //   partial: 2000,
+  //   hideButtons: true
+  // }, {
+  //   name: 'Educação',
+  //   percent: 10,
+  //   total: 3000,
+  //   partial: 200,
+  //   hideButtons: false
+  // }
+]
 
 class App extends React.Component {
+
+  renderAccounts (accounts) {
+    if (accounts && accounts.length > 0) {
+      return (
+        accounts.map((item, index) => (
+          <Account
+            key={index}
+            account={item}
+            hideButtons={item.hideButtons}
+            />
+        ))
+      )
+    } else {
+      return (
+        <NoResults
+          message='Nenhuma receita cadastrada.'
+          tip='Que tal cadastrar sua fonte de receita agora? (-;'
+          action={() => console.log('Cadastrar Receita')}
+          actionLabel='Cadastrar receita'
+        />
+      )
+    }
+  }
+
   render () {
-    let account1 = {
-      title: 'Gastos gerais',
-      total: 740.0,
-      percent: 50
-    }
-
-    let account2 = {
-      title: 'Educação',
-      total: 280.0,
-      percent: 10
-    }
-
-    let account3 = {
-      title: 'Diversão',
-      total: 280.0,
-      percent: 10
-    }
-
-    let account4 = {
-      title: 'Liberdade',
-      total: 280.0,
-      percent: 10
-    }
-
-    let account5 = {
-      title: 'Sonhos - Compras programadas',
-      total: 280.0,
-      percent: 10
-    }
-
-    let account6 = {
-      title: 'Doação',
-      total: 120.0,
-      percent: 5
-    }
-
     return (
       <div className='app-wrapper app-temporary-css'>
         <header className='app-header'>
@@ -48,23 +53,7 @@ class App extends React.Component {
         </header>
 
         <main className='app-content'>
-
-          <section className='account'>
-            <div className='account__header'>
-              <div className='account__header__title'>Saldo mês atual</div>
-              <div className='account__header__options'>*</div>
-            </div>
-            <div className='account__body'>
-              <div className='account__body__total'>R$ 2.000, 00</div>
-            </div>
-          </section>
-
-          <Account account={account1} />
-          <Account account={account2} />
-          <Account account={account3} />
-          <Account account={account4} />
-          <Account account={account5} />
-          <Account account={account6} />
+          {this.renderAccounts(accounts)}
         </main>
       </div>
     )

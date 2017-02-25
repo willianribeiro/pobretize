@@ -4,11 +4,6 @@ import React from 'react'
 import { render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 
-// Redux
-import { createStore } from 'redux'
-import { Provider } from 'react-redux'
-import rootReducer from './reducers'
-
 // React Toolbox
 import theme from './vendors/react-toolbox/theme'
 import ThemeProvider from 'react-toolbox/lib/ThemeProvider'
@@ -18,17 +13,13 @@ import './vendors/react-toolbox/theme.css'
 import App from './app'
 import './sass/main.scss'
 
-const store = createStore(rootReducer)
-
 const renderApp = (NextApp) => {
   render(
-    <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <AppContainer>
-          <NextApp />
-        </AppContainer>
-      </ThemeProvider>
-    </Provider>,
+    <ThemeProvider theme={theme}>
+      <AppContainer>
+        <NextApp />
+      </AppContainer>
+    </ThemeProvider>,
     document.querySelector('[data-js="app"]')
   )
 }
