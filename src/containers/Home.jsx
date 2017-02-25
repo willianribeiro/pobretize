@@ -2,93 +2,39 @@ import React from 'react'
 
 import Account from '../components/Account.jsx'
 import NoResults from '../components/NoResults.jsx'
-import Dialog from 'react-toolbox/lib/dialog/Dialog'
-import Input from 'react-toolbox/lib/input/Input'
-
-const accounts = [
-  // {
-  //   name: 'Caixa',
-  //   percent: 0,
-  //   total: 8000,
-  //   partial: 2000,
-  //   hideButtons: true
-  // }, {
-  //   name: 'Educação',
-  //   percent: 10,
-  //   total: 3000,
-  //   partial: 200,
-  //   hideButtons: false
-  // }
-]
+import AccountsList from './AccountsList.jsx'
+import IncomeModal from './IncomeModal.jsx'
 
 class Home extends React.Component {
-  constructor () {
+  constructor() {
     super()
-    this.state = {
-      active: false,
-      monthlyValue: '0',
-      payDay: '30'
-    }
-    this.bind(this)
-  }
-
-  bind(context) {
-    context.renderDialog = context.renderDialog.bind(context)
-    context.handleChange = context.handleChange.bind(context)
-    context.handleToggleDialog = context.handleToggleDialog.bind(context)
-    context.save = context.save.bind(context)
-    context.cancel = context.cancel.bind(context)
+    this.hasAccounts = this.hasAccounts.bind(this)
+    this.renderAccounts = this.renderAccounts.bind(this)
+    this.handleToggleDialog = this.handleToggleDialog.bind(this)
   }
 
   handleToggleDialog () {
-    this.setState({active: !this.state.active})
+    // abrir o modal - fazer isso no redux
+    console.log('toggle');
   }
 
-  handleChange = (name, value) => {
-    this.setState({[name]: value})
+  hasAccounts () {
+    return this.props.accounts.length > 0
   }
 
-  save () {
-    console.log('saved')
-    console.log(this.state.monthlyValue)
-    this.handleToggleDialog()
-  }
-
-  cancel () {
-    console.log('canceled')
-    this.handleToggleDialog()
-  }
-
-  renderContent (accounts) {
-    let actions;
-
-    if (accounts && accounts.length > 0) {
-      return this.renderAccounts(accounts);
+  render () {
+    if (this.hasAccounts()) {
+      return this.renderAccounts()
     } else {
-      return this.renderDialog();
+      return this.renderIncomeModal()
     }
   }
 
-  renderAccounts (accounts) {
-    return (
-      accounts.map((item, index) => (
-        <Account
-          key={index}
-          account={item}
-          hideButtons={item.hideButtons}
-        />
-      ))
-    )
+  renderAccounts () {
+    return <AccountsList accounts={this.props.accounts} />;
   }
 
-  renderDialog() {
-    let actions;
-
-    actions = [
-      { label: "Cancelar", onClick: this.cancel },
-      { label: "Salvar", onClick: this.save }
-    ];
-
+  renderIncomeModal () {
     return (
       <div>
         <NoResults
@@ -97,42 +43,14 @@ class Home extends React.Component {
           action={this.handleToggleDialog}
           actionLabel='Cadastrar receita'
         />
-        <Dialog
-          actions={actions}
-          active={this.state.active}
-          onEscKeyDown={this.handleToggleDialog}
-          onOverlayClick={this.handleToggleDialog}
-          title='Cadastrar receita'>
-          <div>
-            <Input
-              type='text'
-              label='Valor mensal'
-              name='monthlyValue'
-              icon='attach_money'
-              value={this.state.monthlyValue}
-              onChange={this.handleChange.bind(this, 'monthlyValue')}
-            />
-          </div>
-          <div>
-            <Input
-              type='number'
-              min='1'
-              max='28'
-              label='Dia do pagamento'
-              name='payDay'
-              icon='today'
-              value={this.state.payDay}
-              onChange={this.handleChange.bind(this, 'payDay')}
-            />
-          </div>
-        </Dialog>
+        <IncomeModal />
       </div>
     )
   }
+}
 
-  render () {
-    return this.renderContent(accounts);
-  }
+Home.defaultProps = {
+  accounts: []
 }
 
 export default Home;
