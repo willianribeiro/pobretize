@@ -1,7 +1,6 @@
 import React from 'react'
 
-import Account from '../components/Account.jsx'
-import NoResults from '../components/NoResults.jsx'
+import NoResults from '../../components/NoResults.jsx'
 import AccountsList from './AccountsList.jsx'
 import IncomeModal from './IncomeModal.jsx'
 
