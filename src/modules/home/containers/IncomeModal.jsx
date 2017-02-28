@@ -1,8 +1,18 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import { connect } from 'react-redux'
 
 import Dialog from 'react-toolbox/lib/dialog/Dialog'
 import Input from 'react-toolbox/lib/input/Input'
 import * as api from '../api/api.js'
+import * as incomeModalActions from '../actions/incomeModalActions.js'
+
+@connect((store) => {
+    let {home} = store
+
+    return {
+      incomeModal: home.incomeModal
+    }
+})
 
 class IncomeModal extends React.Component {
   constructor () {
@@ -18,6 +28,8 @@ class IncomeModal extends React.Component {
 
   bind(context) {
     context.handleChange = context.handleChange.bind(context)
+    context.save = context.save.bind(context)
+    context.cancel = context.cancel.bind(context)
   }
 
   handleChange = (name, value) => {
@@ -25,7 +37,7 @@ class IncomeModal extends React.Component {
   }
 
   handleToggleDialog () {
-    this.setState({active: !this.state.active})
+    incomeModalActions.toggleIncomeModal(false)
   }
 
   save () {
@@ -66,7 +78,7 @@ class IncomeModal extends React.Component {
     return (
       <Dialog
         actions={actions}
-        active={props.active}
+        active={props.incomeModal.active}
         onEscKeyDown={this.handleToggleDialog}
         onOverlayClick={this.handleToggleDialog}
         title='Cadastrar receita'>

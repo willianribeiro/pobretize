@@ -3,6 +3,7 @@ import React from 'react'
 import NoResults from '../../../components/NoResults.jsx'
 import AccountsList from './AccountsList.jsx'
 import IncomeModal from './IncomeModal.jsx'
+import * as incomeModalActions from '../actions/incomeModalActions.js'
 
 class Home extends React.Component {
   constructor() {
@@ -13,8 +14,7 @@ class Home extends React.Component {
   }
 
   handleToggleDialog () {
-    // abrir o modal - fazer isso no redux
-    console.log('toggle');
+    incomeModalActions.toggleIncomeModal(true)
   }
 
   hasAccounts () {
